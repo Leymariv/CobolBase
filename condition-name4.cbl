@@ -1,0 +1,33 @@
+000004 IDENTIFICATION DIVISION.
+000004 PROGRAM-ID. HELLO-WORLD.
+000004* simple hello world program
+000004 DATA DIVISION.
+000005   WORKING-STORAGE SECTION.
+000006     01 choix.
+000007       88 oui    VALUE "O", "o".
+000008       88 non    VALUE "NX", "N", "n".
+000009       88 entier VALUE 0 THRU 9.
+000009       02 choixBis PIC X.
+000009       02 choixTer PIC X.
+000004
+000004 PROCEDURE DIVISION.
+000012   main.
+000013    ACCEPT choix.
+000013     SET oui TO TRUE.
+000013     DISPLAY choix
+000013     DISPLAY choixBis
+000013     DISPLAY choixTer
+000013     SET choix TO "O".
+000013     SET choixBis TO "N".
+000013     SET choixTer TO "X".
+000013     DISPLAY choix
+000013     DISPLAY choixBis
+000013     DISPLAY choixTer
+000014     EVALUATE TRUE
+000015       WHEN oui DISPLAY "oui"
+000016       WHEN non DISPLAY "non"
+000017       WHEN entier DISPLAY "entier"
+000018       WHEN OTHER DISPLAY "choix incorrect"
+000019     END-EVALUATE.
+000004     DISPLAY 'Hello world!'.
+000004     STOP RUN.

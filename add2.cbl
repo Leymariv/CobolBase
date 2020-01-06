@@ -1,0 +1,19 @@
+000000   IDENTIFICATION DIVISION.
+000000   PROGRAM-ID.  addition.
+000000   
+000000*   DATA DIVISION.
+000000*   WORKING-STORAGE SECTION.
+000000*   01  Num1           PIC 9  VALUE 0.
+000000*   01  Num2           PIC 9  VALUE 0.
+000000*   01  Result         PIC 99 VALUE 0.
+000000   
+000000   PROCEDURE DIVISION.
+000000   Calculator.
+000000          DISPLAY "Enter First Number      : " WITH NO ADVANCING
+000000          ACCEPT Num1
+000000          DISPLAY "Enter Second Number     : " WITH NO ADVANCING
+000000          ACCEPT Num2
+000000             ADD Num1, Num2 TO Result
+000000               ON SIZE ERROR  MOVE 0 TO Result.
+000000          DISPLAY "Result is = ", Result
+000000       STOP RUN.

@@ -1,0 +1,51 @@
+000000 IDENTIFICATION DIVISION.
+       PROGRAM-ID. ex-evaluate-also.
+
+       DATA DIVISION.
+       WORKING-STORAGE SECTION.
+
+       01 WS-INDICATOR PIC X VALUE "x".
+       01 WS-GENDER PIC X.
+         88 WS-F VALUE "f", "F".
+         88 WS-M VALUE "M", "m".
+       01 WS-AGE PIC 99 VALUE 12.
+
+       PROCEDURE DIVISION.
+       EVALUATE TRUE ALSO WS-GENDER ALSO WS-AGE
+
+         WHEN WS-AGE >= 10 AND < 50 
+               ALSO  "M"  ALSO  20 THRU 40
+                 CONTINUE
+         WHEN WS-AGE >= 10 AND < 50 
+              ALSO  "F"  ALSO  20 THRU 40
+                 CONTINUE
+         WHEN OTHER
+                 CONTINUE
+        END-EVALUATE.
+
+       EVALUATE WS-INDICATOR ALSO WS-GENDER
+         WHEN "A" ALSO "M"  CONTINUE
+         WHEN "N" ALSO "F"  CONTINUE
+         WHEN "X" ALSO "F"  CONTINUE
+         WHEN OTHER CONTINUE
+       END-EVALUATE.
+
+       EVALUATE "A" ALSO "F"
+         WHEN WS-INDICATOR ALSO WS-GENDER CONTINUE.
+
+       EVALUATE TRUE ALSO FALSE
+         WHEN WS-GENDER = "M" ALSO WS-INDICATOR = "A"
+           CONTINUE
+         WHEN WS-GENDER = "F" ALSO WS-INDICATOR = "A"
+           DISPLAY "this is a woman!" "scd arg"
+         WHEN OTHER
+           CONTINUE.
+
+       EVALUATE TRUE ALSO "A"
+         WHEN WS-F ALSO WS-INDICATOR CONTINUE
+         WHEN WS-M ALSO WS-INDICATOR CONTINUE.
+
+       EVALUATE WS-F ALSO WS-INDICATOR
+         WHEN TRUE ALSO "A" CONTINUE
+         WHEN FALSE ALSO "A" CONTINUE.
+       STOP RUN.
